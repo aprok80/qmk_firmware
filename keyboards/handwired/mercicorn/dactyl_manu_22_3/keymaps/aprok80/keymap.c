@@ -122,14 +122,30 @@ bool isModifierKey( uint16_t keycode ) {
     }
 }
 
-void toggleOneshtMod( uint8_t mod, uint8_t pin ) {
+void toggleOneshtMod( uint8_t mod ) {
     if( (get_oneshot_mods() & MOD_BIT(mod)) > 0 ) {
         del_oneshot_mods(MOD_BIT(mod));
-        writePin( pin, 0 );
     } else {
         add_oneshot_mods(MOD_BIT(mod));
-        writePin( pin, 1 );
     }
+}
+
+uint8_t lastOneshotMod = 0;
+
+void updateLeds( uint8_t mod ) {
+    if( mod != lastOneshotMod ) {
+        if( (mod & MOD_BIT(KC_LALT)) > 0 ) {
+            writePin( D3, 1 );
+        } else {
+            writePin( D3, 0 );
+        }
+        if( (mod & MOD_BIT(KC_LCTL)) > 0 ) {
+            writePin( F4, 1 );
+        } else {
+            writePin( F4, 0 );
+        }
+    }
+    lastOneshotMod = mod;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -141,10 +157,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if( isModifierKey( keycode ) && keycode == lastkeycode && !record->event.pressed ) {
         switch( keycode ) {
             case MO(_FN1):
-                toggleOneshtMod( KC_LALT, D3 );
+                toggleOneshtMod( KC_LALT );
                 break;
             case MO(_FN2):
-                toggleOneshtMod( KC_LCTL, F4 );
+                toggleOneshtMod( KC_LCTL );
                 break;
             case MO(_FN3):
             case MO(_FN4):
@@ -171,5 +187,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }    
         lastkeycode = keycode;
     } 
+    updateLeds(get_oneshot_mods());
     return true;
 }
