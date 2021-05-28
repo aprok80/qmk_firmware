@@ -107,7 +107,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
 };
 
-bool is_alt_tab_active = false;
 uint16_t lastkeycode = 0;
 
 bool isModifierKey( uint16_t keycode ) {
@@ -148,6 +147,8 @@ void updateLeds( uint8_t mod ) {
     lastOneshotMod = mod;
 }
 
+bool is_alt_tab_active = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // modifier key released and no other key since pressed =>
     // FN1  ALT
@@ -170,8 +171,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     if (record->event.pressed) {
         switch( keycode ) {
-            case ALT_TAB:
-                break;
             case MY_PSW:
                 SEND_STRING("xiem6g");
                 break;
@@ -187,6 +186,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         }    
         lastkeycode = keycode;
     } 
+    // alt tabbing with modifier 1 and tab
+    if( keycode == ALT_TAB ) {
+        if (record->event.pressed) {
+            if (!is_alt_tab_active) {
+                is_alt_tab_active = true;
+                register_code(KC_LALT);
+            }
+            register_code(KC_TAB);
+        } else {
+            unregister_code(KC_TAB);
+        }
+    } else if( is_alt_tab_active && !record->event.pressed ) {
+        is_alt_tab_active = false;
+        unregister_code(KC_LALT);
+    }
     updateLeds(get_oneshot_mods());
     return true;
 }
