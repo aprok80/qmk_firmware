@@ -62,17 +62,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     MO(_FN3),MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2),KC_SPC, MO(_FN4)
     ),
     [_FN1] = LAYOUT(
-        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    DE_EXLM,DE_LESS,DE_MORE,DE_EQL, DE_AMPR,DE_PARA,
-        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    DE_QST, DE_LPRN,DE_RPRN,DE_MINS,DE_COLN,DE_EURO,
-        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     DE_PLUS,DE_PERC,DE_DQOT,DE_QUOT,DE_SCLN,_______, 
-       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
+        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
+        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3,
+        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     KC_PDOT,KC_1,   KC_2,   KC_3,   KC_PENT,DE_RING,
+       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     ),
     [_FN2] = LAYOUT(
-        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    DE_EXLM,DE_LESS,DE_MORE,DE_EQL, DE_AMPR,DE_PARA,
-        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    DE_QST, DE_LPRN,DE_RPRN,DE_MINS,DE_COLN,DE_EURO,
-        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     DE_PLUS,DE_PERC,DE_DQOT,DE_QUOT,DE_SCLN,_______, 
-       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
+        _______,    KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,    DE_EXLM,DE_LESS,DE_MORE,DE_EQL, DE_AMPR,DE_PARA,
+        _______,    KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_SLCK,    DE_QST, DE_LPRN,DE_RPRN,DE_MINS,DE_COLN,DE_EURO,
+        _______,    KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_PAUS,    DE_PLUS,DE_PERC,DE_DQOT,DE_QUOT,DE_SCLN,_______, 
+        _______,    DM_RSTP,_______,_______,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
                                     _______,_______,_______,    _______,_______,_______
     ),
     /*
@@ -92,10 +92,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     */
     [_FN3] = LAYOUT(
-        _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    DE_SQ2 ,KC_7,   KC_8,   KC_9,   KC_PMNS,_______,
-        _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    DE_SQ3 ,KC_4,   KC_5,   KC_6,   KC_PPLS,_______, 
-        LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    DE_RING,KC_1,   KC_2,   KC_3,   KC_PENT,_______, 
-       LGUI(KC_TAB),DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,_______,_______,
+        _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
+        _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
+        LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_PDOT,KC_1,   KC_2,   KC_3,   KC_PENT,DE_RING, 
+       LGUI(KC_TAB),DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     ),
     [_FN4] = LAYOUT(
@@ -133,12 +133,12 @@ uint8_t lastOneshotMod = 0;
 
 void updateLeds( uint8_t mod ) {
     if( mod != lastOneshotMod ) {
-        if( (mod & MOD_BIT(KC_LALT)) > 0 ) {
+        if( (mod & MOD_BIT(KC_LCTL)) > 0 ) {
             writePin( D3, 1 );
         } else {
             writePin( D3, 0 );
         }
-        if( (mod & MOD_BIT(KC_LCTL)) > 0 ) {
+        if( (mod & MOD_BIT(KC_LALT)) > 0 ) {
             writePin( F4, 1 );
         } else {
             writePin( F4, 0 );
@@ -158,10 +158,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if( isModifierKey( keycode ) && keycode == lastkeycode && !record->event.pressed ) {
         switch( keycode ) {
             case MO(_FN1):
-                toggleOneshtMod( KC_LALT );
+                toggleOneshtMod( KC_LCTL );
                 break;
             case MO(_FN2):
-                toggleOneshtMod( KC_LCTL );
+                toggleOneshtMod( KC_LALT );
                 break;
             case MO(_FN3):
             case MO(_FN4):
