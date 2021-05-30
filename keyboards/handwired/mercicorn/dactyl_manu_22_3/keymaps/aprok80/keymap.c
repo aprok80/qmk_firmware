@@ -75,26 +75,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,    DM_RSTP,_______,_______,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
                                     _______,_______,_______,    _______,_______,_______
     ),
-    /*
-    [_FN1] = LAYOUT(
-        ALT_TAB,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,DE_CIRC,    DE_SQ2 ,KC_7,   KC_8,   KC_9,   KC_PMNS,_______,
-        KC_ESC,     DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    DE_SQ3 ,KC_4,   KC_5,   KC_6,   KC_PPLS,_______, 
-        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,DE_GRV,     DE_RING,KC_1,   KC_2,   KC_3,   KC_PENT,DM_RSTP, 
-       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_0,   DE_UNDS,_______,_______,
-                                    _______,_______,_______,    _______,_______,_______
-    ),
-    [_FN2] = LAYOUT(
-        _______,    KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,    DE_EXLM,DE_LESS,DE_MORE,DE_EQL, DE_AMPR,DE_PARA,
-        _______,    KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_SLCK,    DE_QST, DE_LPRN,DE_RPRN,DE_MINS,DE_COLN,DE_EURO,
-        _______,    KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_PAUS,    DE_PLUS,DE_PERC,DE_DQOT,DE_QUOT,DE_SCLN,DM_REC2, 
-        _______,    DM_RSTP,_______,_______,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
-                                    _______,_______,_______,    _______,_______,_______
-    ),
-    */
     [_FN3] = LAYOUT(
         _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
         _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
-        LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_PDOT,KC_1,   KC_2,   KC_3,   KC_PENT,DE_RING, 
+        LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
        LGUI(KC_TAB),DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     ),
