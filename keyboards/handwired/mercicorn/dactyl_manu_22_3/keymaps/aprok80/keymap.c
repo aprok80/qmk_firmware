@@ -36,10 +36,7 @@ enum custom_keycodes {
 };
 
 /*
-alt tab coden:
-  wenn fn1 + tab => 
-    alt einrasten bis fn up
-    
+
 app machen
 
  keycodes einlesen, verschidene tests machen
@@ -60,13 +57,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,     KC_C,   KC_T,   KC_I,   KC_E,   KC_O,       KC_B,   KC_N,   KC_R,   KC_S,   KC_G,   DE_SS, 
         LCTL(KC_V), KC_F,   KC_V,   DE_UE,  DE_AE,  DE_OE,      DE_Y,   DE_Z,   KC_COMM,KC_DOT, KC_K,   MY_PSW, 
         KC_LGUI,    DM_PLY1,KC_DEL, KC_END,                                     KC_UP,  KC_DOWN,KC_LEFT,KC_RIGHT,
-                                    MO(_FN3),MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2),MO(_FN5), MO(_FN4)
+                                    KC_ENT,MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2),KC_SPC, MO(_FN4)
     ),
     [_FN1] = LAYOUT(
-        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
-        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3,
-        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING,
-       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
+        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    _______,_______,KC_UP,_______,_______,_______,
+        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
+        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     _______,KC_WH_U,KC_WH_D,_______,_______,_______,
+       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,_______,_______,
                                     _______,_______,_______,    _______,_______,_______
     ),
     [_FN2] = LAYOUT(
@@ -76,25 +73,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         _______,    DM_RSTP,_______,_______,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
                                     _______,_______,_______,    _______,_______,_______
     ),
-    [_FN3] = LAYOUT(
+    /*[_FN3] = LAYOUT(
         _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
         _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
         LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
         KC_APP,     DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
-    ),
+    ),*/
     [_FN4] = LAYOUT(
-        _______,    KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,    _______,_______,KC_UP,_______,_______,_______,
-        _______,    KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_SLCK,    _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
-        _______,    KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_PAUS,    _______,KC_WH_U,KC_WH_D,_______,_______,_______,
-        _______,    DM_RSTP,_______,_______,                                    KC_PGUP,KC_PGDN,_______,_______,
-                                    _______,_______,_______,    _______,_______,_______
-    ),
-    [_FN5] = LAYOUT(
-        _______,    KC_F9,  KC_F10, KC_F11, KC_F12, KC_PSCR,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
-        _______,    KC_F5,  KC_F6,  KC_F7,  KC_F8,  KC_SLCK,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
-        _______,    KC_F1,  KC_F2,  KC_F3,  KC_F4,  KC_PAUS,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
-        _______,    DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
+        _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
+        _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
+        LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
+        KC_APP,     DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     )
 };
@@ -146,9 +136,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // modifier key released and no other key since pressed =>
     // FN1  ALT
     // FN2  CTL
-    // FN3  ENTER
+    // FN3  ENTER  rausgenommen, wegmachen wenns gut it
     // FN4  ENTER
-    // FN5  SPACE
+    // FN5  SPACE war ein test aber ist kacke
     if( isModifierKey( keycode ) && keycode == lastkeycode && !record->event.pressed ) {
         switch( keycode ) {
             case MO(_FN1):
@@ -161,8 +151,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             case MO(_FN4):
                 tap_code( KC_ENTER );
                 break;
-            case MO(_FN5):
-                tap_code( KC_SPC );
+            /*case MO(_FN5):
+                tap_code( KC_SPC );*/
                 break;
         }
     }
