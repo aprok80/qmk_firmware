@@ -60,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     KC_ENT,MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2),KC_SPC, MO(_FN4)
     ),
     [_FN1] = LAYOUT(
-        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    _______,_______,KC_UP,_______,_______,_______,
+        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    _______,_______,KC_UP,  _______,_______,_______,
         ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
         LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     _______,KC_WH_U,KC_WH_D,_______,_______,_______,
        LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,_______,_______,
@@ -80,10 +80,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_APP,     DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     ),*/
-    [_FN4] = LAYOUT(
+    /*[_FN4] = LAYOUT(
         _______,    _______,KC_INS, KC_HOME,KC_PGUP,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
         _______,    _______,KC_DEL, KC_END, KC_PGDN,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
         LCTL(KC_X), KC_LGUI,KC_PSCR,KC_SLCK,KC_PAUS,MY_ACUT,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
+        KC_APP,     DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
+                                    _______,_______,_______,    _______,_______,_______
+    )*/
+    [_FN4] = LAYOUT(  // test ob pfeiltasten hier besser sind
+        _______,    _______,_______,KC_UP,  _______,_______,    KC_PSLS,KC_7,   KC_8,   KC_9,   KC_PMNS,DE_SUP2,
+        _______,    _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,    KC_PAST,KC_4,   KC_5,   KC_6,   KC_PPLS,DE_SUP3, 
+        LCTL(KC_X), KC_LGUI,KC_WH_U,KC_WH_U,KC_WH_D,MY_ACUT,    KC_K   ,KC_1,   KC_2,   KC_3,   KC_J   ,DE_RING, 
         KC_APP,     DM_RSTP,_______,_______,                                    KC_0,   DE_UNDS,KC_PDOT,KC_NLCK,
                                     _______,_______,_______,    _______,_______,_______
     )
