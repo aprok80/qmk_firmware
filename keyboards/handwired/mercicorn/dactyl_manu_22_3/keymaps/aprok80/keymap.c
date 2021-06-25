@@ -57,13 +57,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TAB,     KC_C,   KC_T,   KC_I,   KC_E,   KC_O,       KC_B,   KC_N,   KC_R,   KC_S,   KC_G,   DE_SS, 
         LCTL(KC_V), KC_F,   KC_V,   DE_UE,  DE_AE,  DE_OE,      DE_Y,   DE_Z,   KC_COMM,KC_DOT, KC_K,   MY_PSW, 
         KC_LGUI,    DM_PLY1,KC_DEL, KC_END,                                     KC_UP,  KC_DOWN,KC_LEFT,KC_RIGHT,
-                                    KC_ENT,MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2), MO(_FN4),KC_SPC
+                                    KC_ENT,MT(MOD_RSFT,KC_BSPC),MO(_FN1),MO(_FN2), MO(_FN4),KC_ENT
     ),
     [_FN1] = LAYOUT(
-        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    _______,_______,KC_UP,  _______,_______,_______,
-        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    _______,KC_LEFT,KC_DOWN,KC_RIGHT,_______,_______,
-        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     _______,KC_WH_U,KC_WH_D,_______,_______,_______,
-       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,_______,_______,
+        _______,    DE_AT,  DE_UNDS,DE_LBRC,DE_RBRC,MY_CIRC,    DE_EXLM,DE_LESS,DE_MORE,DE_EQL, DE_AMPR,DE_PARA,
+        ALT_TAB,    DE_BSLS,DE_SLSH,DE_LCBR,DE_RCBR,DE_ASTR,    DE_QST, DE_LPRN,DE_RPRN,DE_MINS,DE_COLN,DE_EURO,
+        LCTL(KC_C), DE_HASH,DE_DLR, DE_PIPE,DE_TILD,MY_GRV,     DE_PLUS,DE_PERC,DE_DQOT,DE_QUOT,DE_SCLN,_______,
+       LGUI(KC_TAB),DM_REC1,KC_INS, KC_HOME,                                    KC_PGUP,KC_PGDN,RCTL(KC_LEFT),RCTL(KC_RIGHT),
                                     _______,_______,_______,    _______,_______,_______
     ),
     [_FN2] = LAYOUT(
@@ -143,6 +143,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // modifier key released and no other key since pressed =>
     // FN1  ALT
     // FN2  CTL
+    // ist nicht aktuell weil viel rumprobieren
     // FN3  ENTER  rausgenommen, wegmachen wenns gut it
     // FN4  ENTER
     // FN5  SPACE war ein test aber ist kacke
@@ -155,11 +156,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 toggleOneshtMod( KC_LALT );
                 break;
             case MO(_FN3):
-            case MO(_FN4):
+            //case MO(_FN4):
                 tap_code( KC_ENTER );
                 break;
-            /*case MO(_FN5):
-                tap_code( KC_SPC );*/
+            case MO(_FN4):
+                tap_code( KC_SPC );
                 break;
         }
     }
